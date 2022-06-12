@@ -4,7 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: rows
     vertical_layout: fill
-    theme: bootstrap
+    theme: cerulean
 editor_options: 
   chunk_output_type: console
 ---

@@ -6,7 +6,7 @@ build_chart <- function(data_ts) {
   pal <- wes_palette(name = "Zissou1", n = 8, type = "continuous")
 
   chart <-
-    highchart(type = "stock", theme = hc_theme_ggplot2()) %>%
+    highchart(type = "stock", theme = hc_theme_elementary()) %>%
     hc_add_series(
       data = data_ts %>% select(fecha, !!sym("Dólar compra")),
       hcaes(x = fecha, y = !!sym("Dólar compra")),
@@ -25,10 +25,30 @@ build_chart <- function(data_ts) {
       name = "Dólar venta",
       yAxis = 0
     )  %>%
+    hc_add_series(
+      data = data_ts %>% select(fecha, !!sym("Dólar eBROU compra")),
+      hcaes(x = fecha, y = !!sym("Dólar eBROU compra")),
+      type = "line",
+      showInLegend = FALSE,
+      color = pal[1],
+      name = "Dólar eBROU compra",
+      yAxis = 0
+    )  %>%
+    hc_add_series(
+      data = data_ts %>% select(fecha, !!sym("Dólar eBROU venta")),
+      hcaes(x = fecha, y = !!sym("Dólar eBROU venta")),
+      type = "line",
+      showInLegend = FALSE,
+      color = pal[8],
+      name = "Dólar eBROU venta",
+      yAxis = 0
+    )  %>%
     hc_add_yAxis(
       nid = 1L,
       title = list(text = "USD / UYU"),
-      relative = 1
+      relative = 1,
+      sep = 50,
+      offset = 0
     ) %>%
     hc_add_series(
       data = data_ts %>% select(fecha, !!sym("Euro compra")),
@@ -52,7 +72,8 @@ build_chart <- function(data_ts) {
       nid = 2L,
       title = list(text = "EUR / UYU"),
       relative = 1,
-      sep = 1
+      sep = 50,
+      offset = 0
     ) %>%
     hc_add_series(
       data = data_ts %>% select(fecha, !!sym("Real compra")),
@@ -76,7 +97,8 @@ build_chart <- function(data_ts) {
       nid = 3L,
       title = list(text = "BRL / UYU"),
       relative = 1,
-      sep = 1
+      sep = 50,
+      offset = 0
     ) %>%
     hc_add_series(
       data = data_ts %>% select(fecha, !!sym("Peso Argentino compra")),
@@ -100,12 +122,13 @@ build_chart <- function(data_ts) {
       nid = 4L,
       title = list(text = "ARS / UYU"),
       relative = 1,
-      sep = 1
+      sep = 50,
+      offset = 0
     ) %>%
     hc_xAxis(title = list(text = "Fecha"), type = "date") %>%
     hc_rangeSelector(
       verticalAlign = "top",
-      selected = 2,
+      selected = 3,
       buttons = list(
         list(
           type = "week",
