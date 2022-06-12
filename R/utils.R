@@ -11,7 +11,6 @@ build_chart <- function(data_ts) {
       data = data_ts %>% select(fecha, !!sym("Dólar compra")),
       hcaes(x = fecha, y = !!sym("Dólar compra")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[1],
       name = "Dólar compra",
       yAxis = 0
@@ -20,7 +19,6 @@ build_chart <- function(data_ts) {
       data = data_ts %>% select(fecha, !!sym("Dólar venta")),
       hcaes(x = fecha, y = !!sym("Dólar venta")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[8],
       name = "Dólar venta",
       yAxis = 0
@@ -29,7 +27,6 @@ build_chart <- function(data_ts) {
       data = data_ts %>% select(fecha, !!sym("Dólar eBROU compra")),
       hcaes(x = fecha, y = !!sym("Dólar eBROU compra")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[1],
       name = "Dólar eBROU compra",
       yAxis = 0
@@ -38,7 +35,6 @@ build_chart <- function(data_ts) {
       data = data_ts %>% select(fecha, !!sym("Dólar eBROU venta")),
       hcaes(x = fecha, y = !!sym("Dólar eBROU venta")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[8],
       name = "Dólar eBROU venta",
       yAxis = 0
@@ -47,14 +43,13 @@ build_chart <- function(data_ts) {
       nid = 1L,
       title = list(text = "USD / UYU"),
       relative = 1,
-      sep = 50,
+      sep = 10,
       offset = 0
     ) %>%
     hc_add_series(
       data = data_ts %>% select(fecha, !!sym("Euro compra")),
       hcaes(x = fecha, y = !!sym("Euro compra")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[2],
       name = "Euro compra",
       yAxis = 1
@@ -63,7 +58,6 @@ build_chart <- function(data_ts) {
       data = data_ts %>% select(fecha, !!sym("Euro venta")),
       hcaes(x = fecha, y = !!sym("Euro venta")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[7],
       name = "Euro venta",
       yAxis = 1
@@ -72,14 +66,13 @@ build_chart <- function(data_ts) {
       nid = 2L,
       title = list(text = "EUR / UYU"),
       relative = 1,
-      sep = 50,
+      sep = 10,
       offset = 0
     ) %>%
     hc_add_series(
       data = data_ts %>% select(fecha, !!sym("Real compra")),
       hcaes(x = fecha, y = !!sym("Real compra")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[3],
       name = "Real compra",
       yAxis = 2
@@ -88,7 +81,6 @@ build_chart <- function(data_ts) {
       data = data_ts %>% select(fecha, !!sym("Real venta")),
       hcaes(x = fecha, y = !!sym("Real venta")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[6],
       name = "Real venta",
       yAxis = 2
@@ -97,23 +89,21 @@ build_chart <- function(data_ts) {
       nid = 3L,
       title = list(text = "BRL / UYU"),
       relative = 1,
-      sep = 50,
+      sep = 10,
       offset = 0
     ) %>%
     hc_add_series(
       data = data_ts %>% select(fecha, !!sym("Peso Argentino compra")),
       hcaes(x = fecha, y = !!sym("Peso Argentino compra")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[4],
       name = "Peso Argentino compra",
-      yAxis = 2
+      yAxis = 3
     )  %>%
     hc_add_series(
       data = data_ts %>% select(fecha, !!sym("Peso Argentino venta")),
       hcaes(x = fecha, y = !!sym("Peso Argentino venta")),
       type = "line",
-      showInLegend = FALSE,
       color = pal[5],
       name = "Peso Argentino venta",
       yAxis = 3
@@ -122,7 +112,7 @@ build_chart <- function(data_ts) {
       nid = 4L,
       title = list(text = "ARS / UYU"),
       relative = 1,
-      sep = 50,
+      sep = 10,
       offset = 0
     ) %>%
     hc_xAxis(title = list(text = "Fecha"), type = "date") %>%
@@ -181,9 +171,12 @@ build_chart <- function(data_ts) {
         fillColor = pal[4]
       )
     ) %>%
-    hc_tooltip(crosshairs = TRUE,
-               valueDecimals = 2,
-               useHTML = TRUE) %>%
+    hc_tooltip(
+      crosshairs = TRUE,
+      shared = TRUE,
+      valueDecimals = 2,
+      useHTML = TRUE
+    ) %>%
     hc_credits(
       enabled = TRUE,
       text = "Fuente: Instituto Nacional de Estadística (INE)",
