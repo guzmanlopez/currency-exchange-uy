@@ -1,0 +1,60 @@
+---
+title: "Cotizaciones en Uruguay"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+    theme: bootstrap
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(flexdashboard)
+library(here)
+library(highcharter)
+library(readr)
+
+source(here("R", "utils.R"))
+
+data <-
+  readr::read_csv(
+    here("output", "cotizaciones_processed.csv"),
+    progress = TRUE,
+    show_col_types = FALSE
+  ) 
+```
+
+Cotizaciones
+===================================== 
+
+Row {data-height=1000}
+-----------------------------------------------------------------------
+
+### 
+
+```{r}
+build_chart(data_ts = data)
+```
+
+
+Descargar datos
+===================================== 
+
+Row {data-height=1000}
+-----------------------------------------------------------------------
+
+```{r}
+library(DT)
+
+datatable(
+  data,
+  extensions = "Buttons",
+  options = list(
+    dom = "Bfrtip",
+    buttons = c("csv", "excel"),
+    pageLength = 50
+  )
+)
+```
