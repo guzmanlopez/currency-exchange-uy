@@ -12,15 +12,23 @@ save_currency_exchange_data = function(res) {
   return(file)
 }
 
-# Download data from INE and write to a file
-set_config(config(ssl_verifypeer = 0L))
 
-url <-
-  read_html(GET("https://www.ine.gub.uy/web/guest/cotizacion-de-monedas")) %>%
-  html_node(".pull-right > a:nth-child(1)") %>%
-  html_attr("href")
+get_currency_exchange_data <- function() {
+  message("Descargando data del INE...")
+  # Download data from INE and write to a file
+  set_config(config(ssl_verifypeer = 0L))
 
-res <-
-  GET(url = url, httr::timeout(60))
+  url <-
+    read_html(GET("https://www.ine.gub.uy/web/guest/cotizacion-de-monedas")) %>%
+    html_node(".pull-right > a:nth-child(1)") %>%
+    html_attr("href")
 
-file <- save_currency_exchange_data(res)
+  res <-
+    GET(url = url, httr::timeout(60))
+
+  file <- save_currency_exchange_data(res)
+
+}
+
+# Get data
+get_currency_exchange_data()
