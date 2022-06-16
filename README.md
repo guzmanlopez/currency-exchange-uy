@@ -2,11 +2,11 @@
 
 # Currency Exchange UY
 
-El objetivo de este código es descargar periódicamente (24 horas) los datos de las cotizaciones de las principales monedas publicados por el Intituto Nacional de Estadística ([INE](https://www.ine.gub.uy/), Uruguay) para su fácil acceso y visualización por parte de la comunidad.
+El objetivo de este código es descargar periódicamente (24 horas) los datos de las cotizaciones de las principales monedas publicados por el Instituto Nacional de Estadística ([INE](https://www.ine.gub.uy/), Uruguay) para su fácil acceso y visualización por parte de la comunidad.
 
 ## Panel interactivo
 
-Para ver todos los datos en figuras interactivas por estaciones meteorológicas y mareográficas ingresar al [Panel interactivo](https://guzmanlopez.github.io/currency-exchange-uy/).
+Para ver la serie histórica hasta el presente de las principales monedas en figuras interactivas, ingresar al [Panel interactivo](https://guzmanlopez.github.io/currency-exchange-uy/).
 
 ## Descarga de los datos
 
